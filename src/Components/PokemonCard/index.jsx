@@ -1,42 +1,31 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import axios from 'axios';
 
-export default function PokemonCard({data}) {
-
-const [details, setDetails] = useState([]);
-
-  useEffect(()=>{
-    axios.get(data.url).then(res => setDetails(res.data))
-  },[])
+export default function PokemonCard({name, exp, image}) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="140"
-        image={details.sprites.front_default}
+        alt={name}
+        height=""
+        image={image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        <Typography variant="body2" color="text.secondary"> EXP: 
+          {exp}
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }
